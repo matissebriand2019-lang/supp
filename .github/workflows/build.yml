@@ -1,6 +1,5 @@
 name: Build MinecraftStatusAgent EXE
 
-# Déclenche le build à chaque push sur la branche main
 on:
   push:
     branches: [ "main" ]
@@ -10,21 +9,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # 1️⃣ Récupérer les fichiers du repo
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2️⃣ Installer .NET 8
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      # 3️⃣ Compiler l'exécutable depuis le projet à la racine
       - name: Build EXE
         run: dotnet publish ./MinecraftStatusAgent.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 
-      # 4️⃣ Upload du fichier compilé (glob pour trouver l'exe quel que soit le sous-dossier)
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
