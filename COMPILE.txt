@@ -1,0 +1,31 @@
+# 🔨 COMPILER L'AGENT - INSTRUCTIONS SIMPLES
+
+## Prérequis
+- Visual Studio 2022 (Community gratuit)
+- .NET 8.0 SDK (https://dotnet.microsoft.com/download/dotnet/8.0)
+- Inno Setup (https://jrsoftware.org/isdl.php)
+
+## Étape 1: Compiler l'agent C#
+
+```powershell
+cd MinecraftStatusAgent\source
+dotnet publish -c Release -r win-x64
+```
+
+Résultat: `bin\Release\net8.0-windows\win-x64\publish\MinecraftStatusAgent.exe`
+
+## Étape 2: Compiler l'installateur (optionnel)
+
+1. Inno Setup → File → Open → `MinecraftStatusAgent-Setup.iss`
+2. Build → Compile
+3. Résultat: `Output\MinecraftStatusAgent-Setup.exe` (15-20 MB)
+
+## Étape 3: Placer les fichiers
+
+```
+MinecraftStatusAgent.exe (ou MinecraftStatusAgent-Setup.exe)
+    ↓
+minecraft-planning/agent-files/
+```
+
+C'est tout!
