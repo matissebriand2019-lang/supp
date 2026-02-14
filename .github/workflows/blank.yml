@@ -20,13 +20,13 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      # 3️⃣ Compiler l'exécutable
+      # 3️⃣ Compiler l'exécutable depuis le projet à la racine
       - name: Build EXE
         run: dotnet publish ./MinecraftStatusAgent.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 
-      # 4️⃣ Uploader le fichier compilé pour téléchargement
+      # 4️⃣ Upload du fichier compilé (glob pour trouver l'exe quel que soit le sous-dossier)
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
           name: MinecraftStatusAgent
-          path: bin/Release/net8.0-windows/win-x64/publish/*.exe
+          path: bin/Release/**/publish/*.exe
